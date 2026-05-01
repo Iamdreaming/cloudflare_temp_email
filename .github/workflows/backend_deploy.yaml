@@ -38,10 +38,13 @@ jobs:
           if [ -n "$use_worker_assets" ]; then
             cd frontend/
             # ✅ 添加批准构建脚本
-            echo "onlyBuiltDependencies[]=esbuild" >> .npmrc
-            echo "onlyBuiltDependencies[]=workerd" >> .npmrc
-            echo "onlyBuiltDependencies[]=sharp" >> .npmrc
-            echo "onlyBuiltDependencies[]=core-js-pure" >> .npmrc
+            # ✅ 创建 .npmrc 文件
+            cat > ~/.npmrc << 'EOF'
+            onlyBuiltDependencies[]=esbuild
+            onlyBuiltDependencies[]=workerd
+            onlyBuiltDependencies[]=sharp
+            onlyBuiltDependencies[]=core-js-pure
+            EOF
             pnpm install --no-frozen-lockfile
             if [ -n "$use_worker_assets_with_telegram" ]; then
               echo "Building with telegram pages"
