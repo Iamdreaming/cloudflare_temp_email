@@ -43,6 +43,7 @@ jobs:
             echo "onlyBuiltDependencies[]=workerd" >> ~/.npmrc
             echo "onlyBuiltDependencies[]=sharp" >> ~/.npmrc
             echo "onlyBuiltDependencies[]=core-js-pure" >> ~/.npmrc
+            pnpm config set ignore-scripts false
             pnpm install --no-frozen-lockfile
             if [ -n "$use_worker_assets_with_telegram" ]; then
               echo "Building with telegram pages"
@@ -66,6 +67,7 @@ jobs:
           echo "onlyBuiltDependencies[]=workerd" >> ~/.npmrc
           echo "onlyBuiltDependencies[]=sharp" >> ~/.npmrc
           echo "onlyBuiltDependencies[]=core-js-pure" >> ~/.npmrc
+          pnpm config set ignore-scripts false
           pnpm install --no-frozen-lockfile
 
           if [ -n "$use_mail_wasm_parser" ]; then
